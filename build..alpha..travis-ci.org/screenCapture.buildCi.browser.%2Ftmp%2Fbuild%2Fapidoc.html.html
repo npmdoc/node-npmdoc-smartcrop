@@ -119,6 +119,12 @@
 
         <li>
 
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan"></span>smartcrop</span>
+
+        </li>
+
+        <li>
+
             <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">smartcrop.</span>DEFAULTS</span>
 
         </li>
@@ -313,6 +319,79 @@
         <li>
 
             <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">smartcrop.DEFAULTS.</span>skinColor</span>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.smartcrop.smartcrop">module smartcrop.smartcrop</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.smartcrop.smartcrop.ImgData">
+            function <span class="apidocSignatureSpan">smartcrop.smartcrop.</span>ImgData
+            <span class="apidocSignatureSpan">(width, height, data)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.smartcrop.smartcrop.Promise">
+            function <span class="apidocSignatureSpan">smartcrop.smartcrop.</span>Promise
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.smartcrop.smartcrop._canvasImageOperations">
+            function <span class="apidocSignatureSpan">smartcrop.smartcrop.</span>_canvasImageOperations
+            <span class="apidocSignatureSpan">(canvasFactory)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.smartcrop.smartcrop._downSample">
+            function <span class="apidocSignatureSpan">smartcrop.smartcrop.</span>_downSample
+            <span class="apidocSignatureSpan">(input, factor)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.smartcrop.smartcrop.crop">
+            function <span class="apidocSignatureSpan">smartcrop.smartcrop.</span>crop
+            <span class="apidocSignatureSpan">(inputImage, options_, callback)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.smartcrop.smartcrop.importance">
+            function <span class="apidocSignatureSpan">smartcrop.smartcrop.</span>importance
+            <span class="apidocSignatureSpan">(options, crop, x, y)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.smartcrop.smartcrop.isAvailable">
+            function <span class="apidocSignatureSpan">smartcrop.smartcrop.</span>isAvailable
+            <span class="apidocSignatureSpan">(options)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">smartcrop.smartcrop.</span>DEFAULTS</span>
 
         </li>
 
@@ -622,6 +701,8 @@ Output:
 
 
 
+
+
 </div>
 
 <div class="apidocSectionDiv">
@@ -701,6 +782,310 @@ Output:
 
 
 
+
+
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.smartcrop.smartcrop" id="apidoc.module.smartcrop.smartcrop">module smartcrop.smartcrop</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.smartcrop.smartcrop.ImgData" id="apidoc.element.smartcrop.smartcrop.ImgData">
+        function <span class="apidocSignatureSpan">smartcrop.smartcrop.</span>ImgData
+        <span class="apidocSignatureSpan">(width, height, data)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function ImgData(width, height, data) {
+  this.width = width;
+  this.height = height;
+  if (data) {
+    this.data = new Uint8ClampedArray(data);
+  }
+  else {
+    this.data = new Uint8ClampedArray(width * height * 4);
+  }
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.smartcrop.smartcrop.Promise" id="apidoc.element.smartcrop.smartcrop.Promise">
+        function <span class="apidocSignatureSpan">smartcrop.smartcrop.</span>Promise
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function Promise() { [native code] }</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.smartcrop.smartcrop._canvasImageOperations" id="apidoc.element.smartcrop.smartcrop._canvasImageOperations">
+        function <span class="apidocSignatureSpan">smartcrop.smartcrop.</span>_canvasImageOperations
+        <span class="apidocSignatureSpan">(canvasFactory)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function canvasImageOperations(canvasFactory) {
+  return {
+    // Takes imageInput as argument
+    // returns an object which has at least
+    // {width: n, height: n}
+    open: function(image) {
+      // Work around images scaled in css by drawing them onto a canvas
+      var w = image.naturalWidth || image.width;
+      var h = image.naturalHeight || image.height;
+      var c = canvasFactory(w, h);
+      var ctx = c.getContext('2d');
+      if (image.naturalWidth &amp;&amp; (image.naturalWidth != image.width || image.naturalHeight != image.height)) {
+        c.width = image.naturalWidth;
+        c.height = image.naturalHeight;
+      }
+      else {
+        c.width = image.width;
+        c.height = image.height;
+      }
+      ctx.drawImage(image, 0, 0);
+      return smartcrop.Promise.resolve(c);
+    },
+    // Takes an image (as returned by open), and changes it's size by resampling
+    resample: function(image, width, height) {
+      return Promise.resolve(image).then(function(image) {
+        var c = canvasFactory(~~width, ~~height);
+        var ctx = c.getContext('2d');
+
+        ctx.drawImage(image, 0, 0, image.width, image.height, 0, 0, c.width, c.height);
+        return smartcrop.Promise.resolve(c);
+      });
+    },
+    getData: function(image) {
+      return Promise.resolve(image).then(function(c) {
+        var ctx = c.getContext('2d');
+        var id = ctx.getImageData(0, 0, c.width, c.height);
+        return new ImgData(c.width, c.height, id.data);
+      });
+    },
+  };
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.smartcrop.smartcrop._downSample" id="apidoc.element.smartcrop.smartcrop._downSample">
+        function <span class="apidocSignatureSpan">smartcrop.smartcrop.</span>_downSample
+        <span class="apidocSignatureSpan">(input, factor)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function downSample(input, factor) {
+  var idata = input.data;
+  var iwidth = input.width;
+  var width = Math.floor(input.width / factor);
+  var height = Math.floor(input.height / factor);
+  var output = new ImgData(width, height);
+  var data = output.data;
+  var ifactor2 = 1 / (factor * factor);
+  for (var y = 0; y &lt; height; y++) {
+    for (var x = 0; x &lt; width; x++) {
+      var i = (y * width + x) * 4;
+
+      var r = 0;
+      var g = 0;
+      var b = 0;
+      var a = 0;
+
+      var mr = 0;
+      var mg = 0;
+      var mb = 0;
+
+      for (var v = 0; v &lt; factor; v++) {
+        for (var u = 0; u &lt; factor; u++) {
+          var j = ((y * factor + v) * iwidth + (x * factor + u)) * 4;
+          r += idata[j];
+          g += idata[j + 1];
+          b += idata[j + 2];
+          a += idata[j + 3];
+          mr = Math.max(mr, idata[j]);
+          mg = Math.max(mg, idata[j + 1]);
+          mb = Math.max(mb, idata[j + 2]);
+        }
+      }
+      // this is some funky magic to preserve detail a bit more for
+      // skin (r) and detail (g). Saturation (b) does not get this boost.
+      data[i] = r * ifactor2 * 0.5 + mr * 0.5;
+      data[i + 1] = g * ifactor2 * 0.7 + mg * 0.3;
+      data[i + 2] = b * ifactor2;
+      data[i + 3] = a * ifactor2;
+    }
+  }
+  return output;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.smartcrop.smartcrop.crop" id="apidoc.element.smartcrop.smartcrop.crop">
+        function <span class="apidocSignatureSpan">smartcrop.smartcrop.</span>crop
+        <span class="apidocSignatureSpan">(inputImage, options_, callback)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">crop = function (inputImage, options_, callback) {
+  var options = extend({}, smartcrop.DEFAULTS, options_);
+
+  if (options.aspect) {
+    options.width = options.aspect;
+    options.height = 1;
+  }
+
+  if (options.imageOperations === null) {
+    options.imageOperations = canvasImageOperations(options.canvasFactory);
+  }
+
+  var iop = options.imageOperations;
+
+  var scale = 1;
+  var prescale = 1;
+
+  return iop.open(inputImage, options.input).then(function(image) {
+
+    if (options.width &amp;&amp; options.height) {
+      scale = min(image.width / options.width, image.height / options.height);
+      options.cropWidth = ~~(options.width * scale);
+      options.cropHeight = ~~(options.height * scale);
+      // Img = 100x100, width = 95x95, scale = 100/95, 1/scale &gt; min
+      // don't set minscale smaller than 1/scale
+      // -&gt; don't pick crops that need upscaling
+      options.minScale = min(options.maxScale, max(1 / scale, options.minScale));
+
+      if (options.prescale !== false) {
+        prescale = 1 / scale / options.minScale;
+        if (prescale &lt; 1) {
+          image = iop.resample(image, image.width * prescale, image.height * prescale);
+          options.cropWidth = ~~(options.cropWidth * prescale);
+          options.cropHeight = ~~(options.cropHeight * prescale);
+          if (options.boost) {
+            options.boost = options.boost.map(function(boost) {
+              return {
+                x: ~~(boost.x * prescale),
+                y: ~~(boost.y * prescale),
+                width: ~~(boost.width * prescale),
+                height: ~~(boost.height * prescale),
+                weight: boost.weight
+              };
+            });
+          }
+        }
+        else {
+          prescale = 1;
+        }
+      }
+    }
+    return image;
+  })
+  .then(function(image) {
+    return iop.getData(image).then(function(data) {
+      var result = analyse(options, data);
+
+      var crops = result.crops || [result.topCrop];
+      for (var i = 0, iLen = crops.length; i &lt; iLen; i++) {
+        var crop = crops[i];
+        crop.x = ~~(crop.x / prescale);
+        crop.y = ~~(crop.y / prescale);
+        crop.width = ~~(crop.width / prescale);
+        crop.height = ~~(crop.height / prescale);
+      }
+      if (callback) callback(result);
+      return result;
+    });
+  });
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+1. Rank them using an importance function to focus the detail in the center
+  and avoid it in the edges.
+1. Output the candidate crop with the highest rank
+
+
+## Simple Example
+```javascript
+smartcrop.<span class="apidocCodeKeywordSpan">crop</span>(image, {width: 100, height: 100}).then(function(result){
+  console.log(result);
+});
+```
+Output:
+```javascript
+{topCrop: {x: 300, y: 200, height: 200, width: 200}}
+```
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.smartcrop.smartcrop.importance" id="apidoc.element.smartcrop.smartcrop.importance">
+        function <span class="apidocSignatureSpan">smartcrop.smartcrop.</span>importance
+        <span class="apidocSignatureSpan">(options, crop, x, y)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function importance(options, crop, x, y) {
+  if (crop.x &gt; x || x &gt;= crop.x + crop.width || crop.y &gt; y || y &gt;= crop.y + crop.height) {
+    return options.outsideImportance;
+  }
+  x = (x - crop.x) / crop.width;
+  y = (y - crop.y) / crop.height;
+  var px = abs(0.5 - x) * 2;
+  var py = abs(0.5 - y) * 2;
+  // Distance from edge
+  var dx = Math.max(px - 1.0 + options.edgeRadius, 0);
+  var dy = Math.max(py - 1.0 + options.edgeRadius, 0);
+  var d = (dx * dx + dy * dy) * options.edgeWeight;
+  var s = 1.41 - sqrt(px * px + py * py);
+  if (options.ruleOfThirds) {
+    s += (Math.max(0, s + d + 0.5) * 1.2) * (thirds(px) + thirds(py));
+  }
+  return s + d;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.smartcrop.smartcrop.isAvailable" id="apidoc.element.smartcrop.smartcrop.isAvailable">
+        function <span class="apidocSignatureSpan">smartcrop.smartcrop.</span>isAvailable
+        <span class="apidocSignatureSpan">(options)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">isAvailable = function (options) {
+  if (!smartcrop.Promise) return false;
+
+  var canvasFactory = options ? options.canvasFactory : defaultCanvasFactory;
+
+  if (canvasFactory === defaultCanvasFactory) {
+    var c = document.createElement('canvas');
+    if (!c.getContext('2d')) {
+      return false;
+    }
+  }
+
+  return true;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
 
 
 
