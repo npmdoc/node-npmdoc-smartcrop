@@ -1,6 +1,6 @@
 # npmdoc-smartcrop
 
-#### api documentation for  [smartcrop (v1.1.1)](https://github.com/jwagner/smartcrop.js)  [![npm package](https://img.shields.io/npm/v/npmdoc-smartcrop.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-smartcrop) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-smartcrop.svg)](https://travis-ci.org/npmdoc/node-npmdoc-smartcrop)
+#### basic api documentation for  [smartcrop (v1.1.1)](https://github.com/jwagner/smartcrop.js)  [![npm package](https://img.shields.io/npm/v/npmdoc-smartcrop.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-smartcrop) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-smartcrop.svg)](https://travis-ci.org/npmdoc/node-npmdoc-smartcrop)
 
 #### Content aware image cropping.
 
@@ -69,7 +69,8 @@
     "scripts": {
         "test": "karma start karma.conf.js"
     },
-    "version": "1.1.1"
+    "version": "1.1.1",
+    "bin": {}
 }
 ```
 
